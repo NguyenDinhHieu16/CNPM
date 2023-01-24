@@ -44,10 +44,12 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 	private JTextField textField_QH;
 	private ButtonGroup btn_nam_nuButtonGroup;
 	
-	JRadioButton rdbtnNam;
-	JRadioButton rdbtnNu;
+	private JRadioButton rdbtnNam;
+	private JRadioButton rdbtnNu;
 	
 	private nhankhau_model nNhankhau;
+	private JTextField textField_BiDanh;
+	private JTextField textField_tongiao;
 	
 
 	/**
@@ -252,18 +254,41 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 		
 		btn_nam_nuButtonGroup = new ButtonGroup();
 		
-		JRadioButton rdbtnNam = new JRadioButton("Nam");
+		rdbtnNam = new JRadioButton("Nam");
 		rdbtnNam.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		rdbtnNam.setBounds(263, 590, 109, 40);
 		contentPane.add(rdbtnNam);
 		
-		JRadioButton rdbtnNu = new JRadioButton("Nữ");
+		rdbtnNu = new JRadioButton("Nữ");
+		rdbtnNu.setBackground(new Color(240, 240, 240));
 		rdbtnNu.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		rdbtnNu.setBounds(416, 588, 109, 38);
 		contentPane.add(rdbtnNu);
 		
 		btn_nam_nuButtonGroup.add(rdbtnNu);
 		btn_nam_nuButtonGroup.add(rdbtnNam);
+		
+		JLabel lbl_BiDanh = new JLabel("Bí Danh:");
+		lbl_BiDanh.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lbl_BiDanh.setBounds(416, 644, 112, 40);
+		contentPane.add(lbl_BiDanh);
+		
+		textField_BiDanh = new JTextField();
+		textField_BiDanh.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		textField_BiDanh.setColumns(10);
+		textField_BiDanh.setBounds(538, 648, 258, 36);
+		contentPane.add(textField_BiDanh);
+		
+		JLabel lbl_TonGiao = new JLabel("Tôn Giáo:");
+		lbl_TonGiao.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lbl_TonGiao.setBounds(416, 685, 112, 40);
+		contentPane.add(lbl_TonGiao);
+		
+		textField_tongiao = new JTextField();
+		textField_tongiao.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		textField_tongiao.setColumns(10);
+		textField_tongiao.setBounds(542, 682, 258, 36);
+		contentPane.add(textField_tongiao);
 		
 		setVisible(true);
 	}
@@ -280,8 +305,9 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 			
 			boolean check = false;
 			for (hokhau_model hokhau : quanly_model.dsHoKhau) {
-				if (textField_SoHk.getText() == hokhau.maho) {
+				if (Integer.parseInt(textField_SoHk.getText()) == Integer.parseInt(hokhau.maho)) {
 					check = true;
+					
 					break;
 				}
 			}
@@ -302,6 +328,9 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 					nNhankhau.noiCap_CCCD = textField_noicap.getText();
 					nNhankhau.ngayChuyenDenString = textField_ngayCD.getText();
 					nNhankhau.noiOTruocString = textField_noioprev.getText();
+					nNhankhau.biDanhString = textField_BiDanh.getText();
+					nNhankhau.tongiaoString = textField_tongiao.getText();
+					
 					if(rdbtnNam.isSelected()) {
 						nNhankhau.gioitinh = "Nam";
 					}
@@ -316,6 +345,7 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 					JOptionPane.showInternalMessageDialog(null, "Insert not success!");
 				}
 			}
+			
 		
 			break;
 		}

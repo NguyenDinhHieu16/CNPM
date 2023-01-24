@@ -23,10 +23,16 @@ import javax.swing.table.DefaultTableModel;
 
 import model.hokhau_model;
 import model.nhankhau_model;
+import model.quanly_model;
 
 import javax.swing.JRadioButton;
 import javax.swing.JList;
 import javax.swing.JEditorPane;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class All_Func extends JFrame implements ActionListener {
 	
@@ -119,7 +125,7 @@ public class All_Func extends JFrame implements ActionListener {
 		btn_suahokhau.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_suahokhau.setFocusable(false);
 		btn_suahokhau.setBounds(20, 255, 156, 29);
-//		btn_suahokhau.addActionListener(this);
+		btn_suahokhau.addActionListener(this);
 		panel_chucnang.add(btn_suahokhau);
 		
 		JLabel label_nhankhau_1 = new JLabel("3. Khoản Thu");
@@ -187,7 +193,7 @@ public class All_Func extends JFrame implements ActionListener {
 				
 			},
 			new String[] {
-				"Họ và Tên", "Bí Danh", "Ngày Sinh", "Giới Tính", "CMND", "Mã Hộ","Tuổi", "Địa Chỉ","Giới Tính", "SĐT", "Quan hệ với chủ hộ"
+				"Quan hệ với chủ hộ", "Họ và Tên", "Bí Danh", "Ngày Sinh", "Giới Tính", "Nơi Sinh", "Nguyên Quán", "Dân tộc", "Tôn Giáo", "Nghề Nghiệp", "Nơi làm việc", "CMND", "Ngày cấp", "Nơi cấp", "Chuyển đến ngày", "Nơi ở trước"
 			}
 		));
 		
@@ -210,7 +216,40 @@ public class All_Func extends JFrame implements ActionListener {
 			}
 		));
 		
-		
+		table_hokhau.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int row=table_hokhau.getSelectedRow();
+				Integer indexInteger = Integer.parseInt((String) table_hokhau.getValueAt(row, 0));
+				showNhanKhau(indexInteger);
+			}
+		});
 		scrollPane_dsHoKhau = new JScrollPane(table_hokhau);
 		scrollPane_dsHoKhau.setBounds(0, 0, 951, 508);
 		
@@ -263,27 +302,21 @@ public class All_Func extends JFrame implements ActionListener {
 		lblNewLabel.setForeground(new Color(255, 69, 0));
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 35));
 		
-		JButton btn_dsNhanKhau = new JButton("Danh sách nhân khẩu");
-		btn_dsNhanKhau.setBounds(208, 20, 135, 23);
-		contentPane.add(btn_dsNhanKhau);
-		btn_dsNhanKhau.setBackground(new Color(255, 255, 255));
-		btn_dsNhanKhau.addActionListener((this));
-		
 		JButton btn_dsHoKhau = new JButton("Danh sách hộ khẩu");
 		btn_dsHoKhau.setBackground(new Color(255, 255, 255));
-		btn_dsHoKhau.setBounds(347, 20, 135, 23);
+		btn_dsHoKhau.setBounds(208, 20, 135, 23);
 		contentPane.add(btn_dsHoKhau);
 		btn_dsHoKhau.addActionListener(this);
 		
 		JButton btn_DongPhi = new JButton("Danh sách khoản thu");
 		btn_DongPhi.setBackground(new Color(255, 255, 255));
-		btn_DongPhi.setBounds(486, 20, 135, 23);
+		btn_DongPhi.setBounds(345, 20, 135, 23);
 		contentPane.add(btn_DongPhi);
 		btn_DongPhi.addActionListener(this);
 		
 		JButton btn_KhoanThu = new JButton("Danh sách đóng phí");
 		btn_KhoanThu.setBackground(new Color(255, 255, 255));
-		btn_KhoanThu.setBounds(625, 20, 135, 23);
+		btn_KhoanThu.setBounds(482, 20, 135, 23);
 		contentPane.add(btn_KhoanThu);
 		btn_KhoanThu.addActionListener(this);
 		
@@ -297,9 +330,24 @@ public class All_Func extends JFrame implements ActionListener {
 		model.addRow(new Object[] {hokhau.maho, hokhau.chuho, hokhau.Sothanhvien, hokhau.diachi});	
 	}
 	
-	public static void themNhanKhau(nhankhau_model nhankhau) {
+//	public static void themNhanKhau(nhankhau_model nhankhau) {
+//		DefaultTableModel model = (DefaultTableModel) table_nhankhau.getModel();
+//		model.addRow(new Object[] {nhankhau.name_nhankhau, });
+//	}
+	
+	public void showNhanKhau(int soHK) {
+		scrollPane_dsHoKhau.setVisible(false);
+		scrollPane_dsDongphi.setVisible(false);
+		scrollPane_dsKhoanThu.setVisible(false);
+		scrollPane_dsNhankhau.setVisible(true);
 		DefaultTableModel model = (DefaultTableModel) table_nhankhau.getModel();
-//		model.addRow(new Object[] {nhankhau.});
+		model.setRowCount(0);
+		for (nhankhau_model nk : quanly_model.dsNhankhau) {
+			if (nk.sohokhau == soHK) {
+				model.addRow(new Object[] {nk.quanheChuho, nk.name_nhankhau, nk.biDanhString, nk.birth_nhankhau, nk.gioitinh, nk.noiSinhString, nk.diachi, nk.dantoc, nk.tongiaoString, nk.ngheNghiepString, nk.noilamViecString, nk.cmnd, nk.ngayCap_CCCD, nk.noiCap_CCCD, nk.ngayChuyenDenString, nk.noiOTruocString});
+				
+			}
+		}
 	}
 	
 	@Override
@@ -320,13 +368,14 @@ public class All_Func extends JFrame implements ActionListener {
 //		default:
 //			break;
 //		}
-		if (cString =="Danh sách nhân khẩu") {
-			scrollPane_dsHoKhau.setVisible(false);
-			scrollPane_dsDongphi.setVisible(false);
-			scrollPane_dsKhoanThu.setVisible(false);
-			scrollPane_dsNhankhau.setVisible(true);
-		}
-		else if (cString == "Danh sách hộ khẩu") {
+//		if (cString =="Danh sách nhân khẩu") {
+//			scrollPane_dsHoKhau.setVisible(false);
+//			scrollPane_dsDongphi.setVisible(false);
+//			scrollPane_dsKhoanThu.setVisible(false);
+//			scrollPane_dsNhankhau.setVisible(true);
+//		}
+//		else 
+		if (cString == "Danh sách hộ khẩu") {
 			scrollPane_dsDongphi.setVisible(false);
 			scrollPane_dsKhoanThu.setVisible(false);
 			scrollPane_dsNhankhau.setVisible(false);
@@ -350,6 +399,10 @@ public class All_Func extends JFrame implements ActionListener {
 		}
 		else if (cString == "Thêm Nhân Khẩu") {
 			ThemNhanKhau_view themNhanKhau_view = new ThemNhanKhau_view();
+			this.setVisible(false);
+		}
+		else if (cString == "Sửa Nhân Khẩu") {
+			SuaNhanKhau_view suaNhanKhau_view = new SuaNhanKhau_view();
 			this.setVisible(false);
 		}
 		
