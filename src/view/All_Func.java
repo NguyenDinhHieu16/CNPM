@@ -1,38 +1,27 @@
 package view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
-import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
-import javax.swing.JMenu;
-import javax.swing.JToolBar;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import model.hokhau_model;
+import model.khoanthu_model;
 import model.nhankhau_model;
 import model.quanly_model;
-
-import javax.swing.JRadioButton;
-import javax.swing.JList;
-import javax.swing.JEditorPane;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class All_Func extends JFrame implements ActionListener {
 	
@@ -42,10 +31,14 @@ public class All_Func extends JFrame implements ActionListener {
 	JScrollPane scrollPane_dsHoKhau;
 	JScrollPane scrollPane_dsDongphi;
 	JScrollPane scrollPane_dsKhoanThu;
+	JScrollPane scrollPane_dsttKhoanThu;
 	public static JTable table_nhankhau;
 	public static JTable table_hokhau;
 	public static JTable table_dongphi;
 	public static JTable table_khoanthu;
+	public static JTable table_ttkhoanthu;
+	
+	private JCheckBox jCheckBox = new JCheckBox();
 	
 	
 	public All_Func() {
@@ -93,16 +86,12 @@ public class All_Func extends JFrame implements ActionListener {
 		panel_chucnang.add(btn_themnhankhau);
 		
 		JButton btn_suanhankhau = new JButton("Sửa Hộ Khẩu");
-		btn_suanhankhau.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btn_suanhankhau.setForeground(new Color(0, 0, 128));
 		btn_suanhankhau.setBackground(new Color(255, 255, 255));
 		btn_suanhankhau.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_suanhankhau.setBounds(20, 148, 156, 29);
 		btn_suanhankhau.setFocusable(false);
-//		btn_suanhankhau.addActionListener(this);
+		btn_suanhankhau.addActionListener(this);
 		panel_chucnang.add(btn_suanhankhau);
 		
 		JLabel lblNhnKhu = new JLabel("2. Nhân Khẩu");
@@ -139,7 +128,7 @@ public class All_Func extends JFrame implements ActionListener {
 		btn_themkhoanthu.setFocusable(false);
 		btn_themkhoanthu.setBackground(Color.WHITE);
 		btn_themkhoanthu.setBounds(20, 319, 156, 29);
-//		btn_themkhoanthu.addActionListener(this);
+		btn_themkhoanthu.addActionListener(this);
 		panel_chucnang.add(btn_themkhoanthu);
 		
 		JButton btn_suakhoanthu = new JButton("Sửa Khoản Thu");
@@ -276,6 +265,8 @@ public class All_Func extends JFrame implements ActionListener {
 		
 		//*****************table danh sách khoản thu***********************//
 		
+		
+
 		table_khoanthu = new JTable();
 		table_khoanthu.getTableHeader().setFont(new Font("Tahoma",Font.PLAIN,14));
 		table_khoanthu.setModel(new DefaultTableModel(
@@ -283,14 +274,67 @@ public class All_Func extends JFrame implements ActionListener {
 					
 				},
 				new String[] {
-						"Mã khoản thu","Loại khoản thu","Tên khoản thu", "số tiên"
+						"Loại khoản thu","Tên khoản thu", "số tiên"
 				}
 			));
+		table_khoanthu.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int row=table_khoanthu.getSelectedRow();
+//				String khoanthu = (String) table_hokhau.getValueAt(0, 0);
+				System.out.println(row);
+				showTTKhoanThu("abc");
+			}
+		});
+
 		scrollPane_dsKhoanThu = new JScrollPane(table_khoanthu);
 		scrollPane_dsKhoanThu.setBounds(0, 0, 951, 508);
 		
 		scrollPane_dsKhoanThu.setVisible(false);
 		panel_thongtin.add(scrollPane_dsKhoanThu);
+		
+		DefaultCellEditor de=new DefaultCellEditor(jCheckBox);
+		table_ttkhoanthu = new JTable();
+		table_ttkhoanthu.getTableHeader().setFont(new Font("Tahoma",Font.PLAIN,14));
+		table_ttkhoanthu.setModel(new DefaultTableModel(
+				new Object[][] {
+					
+				},
+				new String[] {
+						"Số hộ khẩu", "Chủ hộ", "Số thành viên", "Địa chỉ", "Đã nộp"
+				}
+			));
+		table_ttkhoanthu.getColumnModel().getColumn(4).setCellEditor(de);
+		scrollPane_dsttKhoanThu = new JScrollPane(table_ttkhoanthu);
+		scrollPane_dsttKhoanThu.setBounds(0, 0, 951, 508);
+		scrollPane_dsttKhoanThu.setVisible(false);
+		panel_thongtin.add(scrollPane_dsttKhoanThu);
 		
 //		btn_dskhoanthu.addActionListener(this);
 //		btn_dsHoKhau.addActionListener(this);
@@ -330,16 +374,12 @@ public class All_Func extends JFrame implements ActionListener {
 		model.addRow(new Object[] {hokhau.maho, hokhau.chuho, hokhau.Sothanhvien, hokhau.diachi});	
 	}
 	
-//	public static void themNhanKhau(nhankhau_model nhankhau) {
-//		DefaultTableModel model = (DefaultTableModel) table_nhankhau.getModel();
-//		model.addRow(new Object[] {nhankhau.name_nhankhau, });
-//	}
-	
 	public void showNhanKhau(int soHK) {
 		scrollPane_dsHoKhau.setVisible(false);
 		scrollPane_dsDongphi.setVisible(false);
 		scrollPane_dsKhoanThu.setVisible(false);
 		scrollPane_dsNhankhau.setVisible(true);
+		scrollPane_dsttKhoanThu.setVisible(false);
 		DefaultTableModel model = (DefaultTableModel) table_nhankhau.getModel();
 		model.setRowCount(0);
 		for (nhankhau_model nk : quanly_model.dsNhankhau) {
@@ -347,6 +387,32 @@ public class All_Func extends JFrame implements ActionListener {
 				model.addRow(new Object[] {nk.quanheChuho, nk.name_nhankhau, nk.biDanhString, nk.birth_nhankhau, nk.gioitinh, nk.noiSinhString, nk.diachi, nk.dantoc, nk.tongiaoString, nk.ngheNghiepString, nk.noilamViecString, nk.cmnd, nk.ngayCap_CCCD, nk.noiCap_CCCD, nk.ngayChuyenDenString, nk.noiOTruocString});
 				
 			}
+		}
+	}
+	
+	public void showTTKhoanThu(String khoanthu) {
+		scrollPane_dsHoKhau.setVisible(false);
+		scrollPane_dsDongphi.setVisible(false);
+		scrollPane_dsKhoanThu.setVisible(false);
+		scrollPane_dsNhankhau.setVisible(false);
+		scrollPane_dsttKhoanThu.setVisible(true);
+		DefaultTableModel model = (DefaultTableModel) table_ttkhoanthu.getModel();
+		model.setRowCount(0);
+		for (hokhau_model hk : quanly_model.dsHoKhau) {
+			model.addRow(new Object[] {hk.maho, hk.chuho, hk.Sothanhvien, hk.diachi, false});
+		}
+	}
+	
+	public void ThemKhoanThu(khoanthu_model kt) {
+		DefaultTableModel model = (DefaultTableModel) table_khoanthu.getModel();
+		model.addRow(new Object[] {kt.tenkhoanthu, kt.loaikhoanthu, kt.Sotien});
+	}
+	
+	public void refessHoKhau() {
+		DefaultTableModel model = (DefaultTableModel) table_hokhau.getModel();
+		model.setRowCount(0);
+		for (hokhau_model hk : quanly_model.dsHoKhau) {
+			model.addRow(new Object[] {hk.maho, hk.chuho, hk.Sothanhvien, hk.diachi, true});
 		}
 	}
 	
@@ -379,18 +445,21 @@ public class All_Func extends JFrame implements ActionListener {
 			scrollPane_dsDongphi.setVisible(false);
 			scrollPane_dsKhoanThu.setVisible(false);
 			scrollPane_dsNhankhau.setVisible(false);
+			scrollPane_dsttKhoanThu.setVisible(false);
 			scrollPane_dsHoKhau.setVisible(true);
 		}
 		else if (cString == "Danh sách đóng phí") {
 			scrollPane_dsKhoanThu.setVisible(false);
 			scrollPane_dsNhankhau.setVisible(false);
 			scrollPane_dsHoKhau.setVisible(false);
+			scrollPane_dsttKhoanThu.setVisible(false);
 			scrollPane_dsDongphi.setVisible(true);
 		}
 		else if (cString == "Danh sách khoản thu") {
 			scrollPane_dsKhoanThu.setVisible(true);
 			scrollPane_dsNhankhau.setVisible(false);
 			scrollPane_dsHoKhau.setVisible(false);
+			scrollPane_dsttKhoanThu.setVisible(false);
 			scrollPane_dsDongphi.setVisible(false);
 		}
 		else if (cString == "Thêm Hộ Khẩu") {
@@ -403,6 +472,14 @@ public class All_Func extends JFrame implements ActionListener {
 		}
 		else if (cString == "Sửa Nhân Khẩu") {
 			SuaNhanKhau_view suaNhanKhau_view = new SuaNhanKhau_view();
+			this.setVisible(false);
+		}
+		else if (cString == "Sửa Hộ Khẩu") {
+			SuaHoKhau_view suaHoKhau_view = new SuaHoKhau_view();
+			this.setVisible(false);
+		}
+		else if (cString == "Thêm Khoản Thu") {
+			ThemKhoanThu_view themKhoanThu_view = new ThemKhoanThu_view();
 			this.setVisible(false);
 		}
 		
