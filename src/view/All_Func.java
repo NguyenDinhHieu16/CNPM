@@ -201,7 +201,7 @@ public class All_Func extends JFrame implements ActionListener {
 				
 			},
 			new String[] {
-				"Mã hộ", "Chủ hộ", "Số thành viên", "Địa chỉ"
+				"Mã hộ", "Chủ hộ", "Số thành viên", "Địa chỉ", "Ngày lập", "Ngày chuyển đi", "Lý do chuyển", "Người thực hiện"
 			}
 		));
 		
@@ -235,7 +235,7 @@ public class All_Func extends JFrame implements ActionListener {
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				int row=table_hokhau.getSelectedRow();
-				Integer indexInteger = Integer.parseInt((String) table_hokhau.getValueAt(row, 0));
+				String indexInteger = (String) table_hokhau.getValueAt(row, 0);
 				showNhanKhau(indexInteger);
 			}
 		});
@@ -330,7 +330,7 @@ public class All_Func extends JFrame implements ActionListener {
 						"Số hộ khẩu", "Chủ hộ", "Số thành viên", "Địa chỉ", "Đã nộp"
 				}
 			));
-		table_ttkhoanthu.getColumnModel().getColumn(4).setCellEditor(de);
+		table_ttkhoanthu.getColumnModel().getColumn(3).setCellEditor(de);
 		scrollPane_dsttKhoanThu = new JScrollPane(table_ttkhoanthu);
 		scrollPane_dsttKhoanThu.setBounds(0, 0, 951, 508);
 		scrollPane_dsttKhoanThu.setVisible(false);
@@ -371,10 +371,10 @@ public class All_Func extends JFrame implements ActionListener {
 
 	public static void themHoKhau(hokhau_model hokhau) {
 		DefaultTableModel model = (DefaultTableModel) table_hokhau.getModel();
-		model.addRow(new Object[] {hokhau.maho, hokhau.chuho, hokhau.Sothanhvien, hokhau.diachi});	
+		model.addRow(new Object[] {hokhau.maho, hokhau.chuho, hokhau.soThanhvien, hokhau.diachi, hokhau.ngayLap, hokhau.ngayChuyen, hokhau.lyDoChuyen, hokhau.nguoiTHucHien});	
 	}
 	
-	public void showNhanKhau(int soHK) {
+	public void showNhanKhau(String soHK) {
 		scrollPane_dsHoKhau.setVisible(false);
 		scrollPane_dsDongphi.setVisible(false);
 		scrollPane_dsKhoanThu.setVisible(false);
@@ -383,9 +383,8 @@ public class All_Func extends JFrame implements ActionListener {
 		DefaultTableModel model = (DefaultTableModel) table_nhankhau.getModel();
 		model.setRowCount(0);
 		for (nhankhau_model nk : quanly_model.dsNhankhau) {
-			if (nk.sohokhau == soHK) {
+			if (nk.sohokhau.equals(soHK)) {
 				model.addRow(new Object[] {nk.quanheChuho, nk.name_nhankhau, nk.biDanhString, nk.birth_nhankhau, nk.gioitinh, nk.noiSinhString, nk.diachi, nk.dantoc, nk.tongiaoString, nk.ngheNghiepString, nk.noilamViecString, nk.cmnd, nk.ngayCap_CCCD, nk.noiCap_CCCD, nk.ngayChuyenDenString, nk.noiOTruocString});
-				
 			}
 		}
 	}
@@ -399,7 +398,7 @@ public class All_Func extends JFrame implements ActionListener {
 		DefaultTableModel model = (DefaultTableModel) table_ttkhoanthu.getModel();
 		model.setRowCount(0);
 		for (hokhau_model hk : quanly_model.dsHoKhau) {
-			model.addRow(new Object[] {hk.maho, hk.chuho, hk.Sothanhvien, hk.diachi, false});
+			model.addRow(new Object[] {hk.maho, hk.chuho, hk.soThanhvien, hk.diachi, false});
 		}
 	}
 	
@@ -408,11 +407,11 @@ public class All_Func extends JFrame implements ActionListener {
 		model.addRow(new Object[] {kt.tenkhoanthu, kt.loaikhoanthu, kt.Sotien});
 	}
 	
-	public void refessHoKhau() {
+	public static void refessHoKhau() {
 		DefaultTableModel model = (DefaultTableModel) table_hokhau.getModel();
 		model.setRowCount(0);
 		for (hokhau_model hk : quanly_model.dsHoKhau) {
-			model.addRow(new Object[] {hk.maho, hk.chuho, hk.Sothanhvien, hk.diachi, true});
+			model.addRow(new Object[] {hk.maho, hk.chuho, hk.soThanhvien, hk.diachi, hk.ngayLap, hk.ngayChuyen, hk.lyDoChuyen, hk.nguoiTHucHien});	
 		}
 	}
 	

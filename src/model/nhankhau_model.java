@@ -1,7 +1,7 @@
 package model;
 
 public class nhankhau_model {
-	public int sohokhau;
+	public String sohokhau;
 	public String quanheChuho;
 	public String name_nhankhau;
 	public String birth_nhankhau;
@@ -18,16 +18,20 @@ public class nhankhau_model {
 	public String noiOTruocString;
 	public String biDanhString;
 	public String tongiaoString;
+	public String quocTich;
+	public int ID_nhankhau;
 	
 	
-	public nhankhau_model(String cmnd, String name_nhankhau, String birth_nhankhau, String gioitinh,
-			int hokhau, String quanheChuho, String dantoc,String diachi, String noiCap_CCCD, String ngayCap_CCCD, String ngayChuyenDenString, String noiOTruocString, String noiSinhString) {
+	public nhankhau_model(int ID_nhankhau, String cmnd, String name_nhankhau, String birth_nhankhau, String gioitinh,
+			String hokhau, String quocTich, String quanheChuho, String dantoc,String diachi, String noiCap_CCCD, String ngayCap_CCCD, String ngayChuyenDenString, String noiOTruocString, String noiSinhString) {
 		super();
+		this.ID_nhankhau = ID_nhankhau;
 		this.cmnd = cmnd;
 		this.name_nhankhau = name_nhankhau;
 		this.birth_nhankhau = birth_nhankhau;
 		this.gioitinh = gioitinh;
 		this.sohokhau = hokhau;
+		this.quocTich = quocTich;
 		this.quanheChuho = quanheChuho;
 		this.dantoc = dantoc;
 		this.diachi = diachi;

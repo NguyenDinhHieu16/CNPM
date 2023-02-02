@@ -31,7 +31,7 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 	private JTextField textField_SoHk;
 	private JTextField textField_HoVaTen;
 	private JTextField textField_NS;
-	private JTextField textField_NoiSinh;
+	private JTextField textField_NoiThuongTru;
 	private JTextField textField_DanToc;
 	private JTextField textField_NoiLamviec;
 	private JTextField textField_ngaycap;
@@ -50,6 +50,7 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 	private nhankhau_model nNhankhau;
 	private JTextField textField_BiDanh;
 	private JTextField textField_tongiao;
+	private JTextField textField_quocTich;
 	
 
 	/**
@@ -83,156 +84,156 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 		
 		JLabel lbl_SoHk = new JLabel("Số Hộ Khẩu:");
 		lbl_SoHk.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lbl_SoHk.setBounds(117, 153, 151, 40);
+		lbl_SoHk.setBounds(117, 144, 151, 40);
 		contentPane.add(lbl_SoHk);
 		
 		textField_SoHk = new JTextField();
 		textField_SoHk.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		textField_SoHk.setBounds(267, 155, 258, 36);
+		textField_SoHk.setBounds(261, 146, 293, 36);
 		contentPane.add(textField_SoHk);
 		textField_SoHk.setColumns(10);
 		
 		JLabel lbl_HoVaTen = new JLabel("Họ và tên:");
 		lbl_HoVaTen.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lbl_HoVaTen.setBounds(117, 226, 125, 40);
+		lbl_HoVaTen.setBounds(117, 205, 125, 40);
 		contentPane.add(lbl_HoVaTen);
 		
 		textField_HoVaTen = new JTextField();
 		textField_HoVaTen.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		textField_HoVaTen.setBounds(238, 228, 287, 36);
+		textField_HoVaTen.setBounds(234, 207, 320, 36);
 		contentPane.add(textField_HoVaTen);
 		textField_HoVaTen.setColumns(10);
 		
-		JLabel lbl_NoiSinh = new JLabel("Nơi sinh:");
-		lbl_NoiSinh.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lbl_NoiSinh.setBounds(117, 289, 171, 40);
-		contentPane.add(lbl_NoiSinh);
+		JLabel lbl_NoiThuongTru = new JLabel("Nơi thường trú:");
+		lbl_NoiThuongTru.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lbl_NoiThuongTru.setBounds(117, 307, 178, 40);
+		contentPane.add(lbl_NoiThuongTru);
 		
 		JLabel lbl_Dantoc = new JLabel("Dân tộc:");
 		lbl_Dantoc.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lbl_Dantoc.setBounds(117, 351, 171, 40);
+		lbl_Dantoc.setBounds(117, 365, 112, 40);
 		contentPane.add(lbl_Dantoc);
 		
 		JLabel lbl_NoiLamViec = new JLabel("Nơi làm việc:");
 		lbl_NoiLamViec.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lbl_NoiLamViec.setBounds(117, 416, 171, 40);
+		lbl_NoiLamViec.setBounds(639, 416, 171, 40);
 		contentPane.add(lbl_NoiLamViec);
 		
 		JLabel lbl_Ngaycap = new JLabel("Ngày cấp:");
 		lbl_Ngaycap.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lbl_Ngaycap.setBounds(117, 481, 112, 40);
+		lbl_Ngaycap.setBounds(639, 481, 112, 40);
 		contentPane.add(lbl_Ngaycap);
 		
 		JLabel lblNewLabel_ngayCD = new JLabel("Chuyển đến ngày:");
 		lblNewLabel_ngayCD.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_ngayCD.setBounds(117, 543, 227, 40);
+		lblNewLabel_ngayCD.setBounds(639, 543, 210, 40);
 		contentPane.add(lblNewLabel_ngayCD);
 		
 		JLabel lblNewLabel_NgaySinh = new JLabel("Ngày sinh:");
 		lblNewLabel_NgaySinh.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_NgaySinh.setBounds(639, 226, 125, 40);
+		lblNewLabel_NgaySinh.setBounds(639, 256, 125, 40);
 		contentPane.add(lblNewLabel_NgaySinh);
 		
 		textField_NS = new JTextField();
 		textField_NS.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_NS.setColumns(10);
-		textField_NS.setBounds(764, 228, 312, 36);
+		textField_NS.setBounds(771, 258, 305, 36);
 		contentPane.add(textField_NS);
 		
 		JLabel lblNewLabel_NguyenQuan = new JLabel("Nguyên quán:");
 		lblNewLabel_NguyenQuan.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_NguyenQuan.setBounds(639, 289, 161, 40);
+		lblNewLabel_NguyenQuan.setBounds(639, 307, 161, 40);
 		contentPane.add(lblNewLabel_NguyenQuan);
 		
 		JLabel lblNewLabel_Nghe = new JLabel("Nghề nghiệp:");
 		lblNewLabel_Nghe.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_Nghe.setBounds(639, 351, 161, 40);
+		lblNewLabel_Nghe.setBounds(121, 416, 161, 40);
 		contentPane.add(lblNewLabel_Nghe);
 		
 		JLabel lblNewLabel_CCD = new JLabel("CCCD/CMND số:");
 		lblNewLabel_CCD.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_CCD.setBounds(639, 416, 192, 40);
+		lblNewLabel_CCD.setBounds(117, 481, 192, 40);
 		contentPane.add(lblNewLabel_CCD);
 		
 		JLabel lblNewLabel_Noicap = new JLabel("Nơi cấp:");
 		lblNewLabel_Noicap.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_Noicap.setBounds(639, 481, 98, 40);
+		lblNewLabel_Noicap.setBounds(119, 543, 98, 40);
 		contentPane.add(lblNewLabel_Noicap);
 		
 		JLabel lblNewLabel_noioprev = new JLabel("Nơi thường trú trước khi chuyển đến:");
 		lblNewLabel_noioprev.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_noioprev.setBounds(639, 543, 437, 40);
+		lblNewLabel_noioprev.setBounds(117, 594, 437, 40);
 		contentPane.add(lblNewLabel_noioprev);
 		
-		textField_NoiSinh = new JTextField();
-		textField_NoiSinh.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		textField_NoiSinh.setColumns(10);
-		textField_NoiSinh.setBounds(228, 291, 297, 36);
-		contentPane.add(textField_NoiSinh);
+		textField_NoiThuongTru = new JTextField();
+		textField_NoiThuongTru.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		textField_NoiThuongTru.setColumns(10);
+		textField_NoiThuongTru.setBounds(291, 309, 263, 36);
+		contentPane.add(textField_NoiThuongTru);
 		
 		textField_DanToc = new JTextField();
 		textField_DanToc.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_DanToc.setColumns(10);
-		textField_DanToc.setBounds(228, 353, 297, 36);
+		textField_DanToc.setBounds(224, 367, 330, 36);
 		contentPane.add(textField_DanToc);
 		
 		textField_NoiLamviec = new JTextField();
 		textField_NoiLamviec.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_NoiLamviec.setColumns(10);
-		textField_NoiLamviec.setBounds(278, 418, 247, 36);
+		textField_NoiLamviec.setBounds(789, 418, 287, 36);
 		contentPane.add(textField_NoiLamviec);
 		
 		textField_ngaycap = new JTextField();
 		textField_ngaycap.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_ngaycap.setColumns(10);
-		textField_ngaycap.setBounds(238, 483, 287, 36);
+		textField_ngaycap.setBounds(761, 483, 315, 36);
 		contentPane.add(textField_ngaycap);
 		
 		textField_ngayCD = new JTextField();
 		textField_ngayCD.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_ngayCD.setColumns(10);
-		textField_ngayCD.setBounds(325, 545, 200, 36);
+		textField_ngayCD.setBounds(847, 545, 229, 36);
 		contentPane.add(textField_ngayCD);
 		
 		textField_NguyenQuan = new JTextField();
 		textField_NguyenQuan.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_NguyenQuan.setColumns(10);
-		textField_NguyenQuan.setBounds(801, 291, 275, 36);
+		textField_NguyenQuan.setBounds(805, 309, 271, 36);
 		contentPane.add(textField_NguyenQuan);
 		
 		textField_Nghe = new JTextField();
 		textField_Nghe.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_Nghe.setColumns(10);
-		textField_Nghe.setBounds(796, 353, 280, 36);
+		textField_Nghe.setBounds(274, 418, 280, 36);
 		contentPane.add(textField_Nghe);
 		
 		textField_CCD = new JTextField();
 		textField_CCD.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_CCD.setColumns(10);
-		textField_CCD.setBounds(829, 418, 247, 36);
+		textField_CCD.setBounds(307, 483, 247, 36);
 		contentPane.add(textField_CCD);
 		
 		textField_noicap = new JTextField();
 		textField_noicap.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_noicap.setColumns(10);
-		textField_noicap.setBounds(739, 483, 337, 36);
+		textField_noicap.setBounds(217, 545, 337, 36);
 		contentPane.add(textField_noicap);
 		
 		textField_noioprev = new JTextField();
 		textField_noioprev.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_noioprev.setColumns(10);
-		textField_noioprev.setBounds(639, 580, 437, 36);
+		textField_noioprev.setBounds(538, 596, 538, 36);
 		contentPane.add(textField_noioprev);
 		
 		JLabel lblNewLabel_QH = new JLabel("Quan hệ với chủ hộ:");
 		lblNewLabel_QH.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_QH.setBounds(639, 153, 227, 40);
+		lblNewLabel_QH.setBounds(639, 144, 227, 40);
 		contentPane.add(lblNewLabel_QH);
 		
 		textField_QH = new JTextField();
 		textField_QH.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_QH.setColumns(10);
-		textField_QH.setBounds(876, 155, 200, 36);
+		textField_QH.setBounds(876, 146, 200, 36);
 		contentPane.add(textField_QH);
 		
 		JButton btn_save = new JButton("SAVE");
@@ -249,20 +250,20 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 		
 		JLabel lblNewLabel_Gioitinh = new JLabel("Giới tính:");
 		lblNewLabel_Gioitinh.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_Gioitinh.setBounds(117, 594, 112, 40);
+		lblNewLabel_Gioitinh.setBounds(639, 205, 112, 40);
 		contentPane.add(lblNewLabel_Gioitinh);
 		
 		btn_nam_nuButtonGroup = new ButtonGroup();
 		
 		rdbtnNam = new JRadioButton("Nam");
 		rdbtnNam.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		rdbtnNam.setBounds(263, 590, 109, 40);
+		rdbtnNam.setBounds(771, 205, 109, 40);
 		contentPane.add(rdbtnNam);
 		
 		rdbtnNu = new JRadioButton("Nữ");
 		rdbtnNu.setBackground(new Color(240, 240, 240));
 		rdbtnNu.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		rdbtnNu.setBounds(416, 588, 109, 38);
+		rdbtnNu.setBounds(898, 208, 109, 38);
 		contentPane.add(rdbtnNu);
 		
 		btn_nam_nuButtonGroup.add(rdbtnNu);
@@ -270,25 +271,36 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 		
 		JLabel lbl_BiDanh = new JLabel("Bí Danh:");
 		lbl_BiDanh.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lbl_BiDanh.setBounds(416, 644, 112, 40);
+		lbl_BiDanh.setBounds(117, 256, 112, 40);
 		contentPane.add(lbl_BiDanh);
 		
 		textField_BiDanh = new JTextField();
 		textField_BiDanh.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_BiDanh.setColumns(10);
-		textField_BiDanh.setBounds(538, 648, 258, 36);
+		textField_BiDanh.setBounds(224, 258, 330, 36);
 		contentPane.add(textField_BiDanh);
 		
 		JLabel lbl_TonGiao = new JLabel("Tôn Giáo:");
 		lbl_TonGiao.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lbl_TonGiao.setBounds(416, 685, 112, 40);
+		lbl_TonGiao.setBounds(639, 365, 112, 40);
 		contentPane.add(lbl_TonGiao);
 		
 		textField_tongiao = new JTextField();
 		textField_tongiao.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textField_tongiao.setColumns(10);
-		textField_tongiao.setBounds(542, 682, 258, 36);
+		textField_tongiao.setBounds(749, 367, 327, 36);
 		contentPane.add(textField_tongiao);
+		
+		JLabel lbl_QuocTich = new JLabel("Quốc tịch:");
+		lbl_QuocTich.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lbl_QuocTich.setBounds(355, 637, 125, 40);
+		contentPane.add(lbl_QuocTich);
+		
+		textField_quocTich = new JTextField();
+		textField_quocTich.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		textField_quocTich.setColumns(10);
+		textField_quocTich.setBounds(475, 637, 229, 36);
+		contentPane.add(textField_quocTich);
 		
 		setVisible(true);
 	}
@@ -305,7 +317,7 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 			
 			boolean check = false;
 			for (hokhau_model hokhau : quanly_model.dsHoKhau) {
-				if (Integer.parseInt(textField_SoHk.getText()) == Integer.parseInt(hokhau.maho)) {
+				if (textField_SoHk.getText().equals(hokhau.maho)) {
 					check = true;
 					
 					break;
@@ -314,12 +326,12 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 			
 			if (check == true) {
 				try {
-					nNhankhau.sohokhau = Integer.parseInt(textField_SoHk.getText());
+					nNhankhau.sohokhau = textField_SoHk.getText();
 					nNhankhau.quanheChuho = textField_QH.getText();
 					nNhankhau.name_nhankhau = textField_HoVaTen.getText();
 					nNhankhau.birth_nhankhau = textField_NS.getText();
-					nNhankhau.noiSinhString = textField_NoiSinh.getText();
-					nNhankhau.diachi = textField_NguyenQuan.getText();
+					nNhankhau.noiSinhString = textField_NguyenQuan.getText();
+					nNhankhau.diachi = textField_NoiThuongTru.getText();
 					nNhankhau.dantoc= textField_DanToc.getText();
 					nNhankhau.ngheNghiepString = textField_Nghe.getText();
 					nNhankhau.noilamViecString = textField_NoiLamviec.getText();
@@ -330,6 +342,7 @@ public class ThemNhanKhau_view extends JFrame implements ActionListener{
 					nNhankhau.noiOTruocString = textField_noioprev.getText();
 					nNhankhau.biDanhString = textField_BiDanh.getText();
 					nNhankhau.tongiaoString = textField_tongiao.getText();
+					nNhankhau.quocTich = textField_quocTich.getText();
 					
 					if(rdbtnNam.isSelected()) {
 						nNhankhau.gioitinh = "Nam";
